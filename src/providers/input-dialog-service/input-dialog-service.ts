@@ -60,7 +60,7 @@ export class InputDialogServiceProvider {
   constructor(public alertCtrl: AlertController, public dataService: GroceriesServiceProvider, public modalCtrl : ModalController) {
     console.log('Hello InputDialogServiceProvider Provider');
   }
-  public openModal(item, index?){
+  public openModal(item?, index?){
     console.log('open');
     var data = { 
         modalTitle : item ? 'Edit Item' : 'Enter Item Details',
