@@ -13,6 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GroceriesServiceProvider } from '../providers/groceries-service/groceries-service';
 import { InputDialogServiceProvider } from '../providers/input-dialog-service/input-dialog-service';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Screenshot } from '@ionic-native/screenshot';
+import { SMS } from '@ionic-native/sms';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GroceriesServiceProvider,
     InputDialogServiceProvider,
-    SocialSharing
+    SocialSharing,
+    Screenshot,
+    SMS
   ]
 })
 export class AppModule {}

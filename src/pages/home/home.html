@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding [class.newBG]="state">
 
 
   <h3 class="no-item" text-center *ngIf="loadItems().length === 0">
@@ -17,6 +17,10 @@
         <p>{{item.quantity}}</p>
       </ion-item>
       <ion-item-options>
+        <button (click)="sendText(item)" ion-button color="dark" icon-start>
+            <ion-icon name="mail"></ion-icon>
+            Email
+        </button>
         <button (click)="editItem(item, i)" ion-button color="primary" icon-start>
             <ion-icon name="create"></ion-icon>
             Edit
@@ -29,10 +33,24 @@
           <ion-icon name="trash"></ion-icon>
           Done
         </button>
+        <!--Not sure where this fits
+        <button ion-button outline (click)="screenShotURI()">Screenshot (URI)</button>
+
+        <img src="{{ screen }}" *ngIf="state">
+
+        <span>
+        <img *ngIf="userScreenshot" [src]="userScreenshot" alt="">
+        </span>
+        <button ion-button outline (click)="saveScreenshotGetURI()">Screenshot (URI)</button>
+        end this-->
 
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+  
+
+
   <ion-fab bottom right>
     <button (click)="addItem()" ion-fab mini color="light"> 
       <ion-icon name="add"></ion-icon>
