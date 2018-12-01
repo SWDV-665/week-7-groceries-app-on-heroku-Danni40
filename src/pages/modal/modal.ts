@@ -15,8 +15,8 @@ import { IonicPage, NavController, NavParams , ViewController} from 'ionic-angul
 })
 export class ModalPage {
   modalValues;
-  items;
-  listItems = ['Milk', 'Bananas','Tea','Break','Butter','Breakfast Shake','Turkey'];
+  name;
+  //listItems = ['Milk', 'Bananas','Tea','Break','Butter','Breakfast Shake','Turkey'];
   quantity;
   listQuantities = ['1','2','3','4','5','6','7','8','9','10'];
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController) {

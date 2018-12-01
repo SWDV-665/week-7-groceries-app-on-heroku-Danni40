@@ -15,10 +15,8 @@
     <ion-list>
         <ion-label>{{modalValues.modalMessage}}</ion-label>
         <ion-item>
-          <ion-label fixed>Choose or enter your item</ion-label>
-          <ion-select [(ngModel)]="modalValues.items">
-          <ion-option *ngFor="let items of listItems" [value]="item">{{ items }}</ion-option>
-          </ion-select>
+          <ion-label fixed>Enter your item</ion-label>
+          <ion-input [(ngModel)]="modalValues.name" type="text" ngDefaultControl></ion-input>
         </ion-item>
 
         <ion-item>

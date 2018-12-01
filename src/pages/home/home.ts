@@ -18,13 +18,25 @@ export class HomePage {
   screen: any;
   state: boolean = false;
   userScreenshot: string;
+  items = [];
+  errorMessage: string;
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, public alertCtrl: AlertController, public dataService: GroceriesServiceProvider, public inputDialogService: InputDialogServiceProvider, public socialSharing: SocialSharing, private screenshot: Screenshot, private platform: Platform, private sms: SMS) {
+    dataService.dataChanged$.subscribe((dataChanged: boolean) => {
+      this.loadItems();
+    });
+  }
 
+  ionViewDidLoad() {
+    this.loadItems();
   }
 
   loadItems(){
-    return this.dataService.getItems();
+    this.dataService.getItems()
+      .subscribe(
+        items => this.items = items,
+        error => this.errorMessage = <any>error
+        );
   }
 
   removeItem(item, index) {
@@ -35,7 +47,7 @@ export class HomePage {
     });
     toast.present();
 
-    this.dataService.removeItem(index);
+    this.dataService.removeItem(item);
   }
 
   shareItem(item, index) {
@@ -118,14 +130,14 @@ export class HomePage {
     });
     toast.present();
 
-    //this.inputDialogService.showPrompt(item, index);
-    this.inputDialogService.openModal(item,index);
+    this.inputDialogService.showPrompt(item, index);
+    //this.inputDialogService.openModal(item,index);
   }
 
   addItem() {
     console.log("Adding Item");
-    //this.inputDialogService.showPrompt();
-    this.inputDialogService.openModal();
+    this.inputDialogService.showPrompt();
+    //this.inputDialogService.openModal();
   }
 
 }

@@ -12,9 +12,18 @@ import { GroceriesServiceProvider } from '../../providers/groceries-service/groc
 */
 @Injectable()
 export class InputDialogServiceProvider {
-  modalPage;
-/*
+  //modalPage;
+
+//constructor(public http: HttpClient) {
+  constructor(public alertCtrl: AlertController, public dataService: GroceriesServiceProvider, public modalCtrl : ModalController) {
+    console.log('Hello InputDialogServiceProvider Provider');
+  }
+
   showPrompt(item?, index?) {
+    if(index !== undefined) {
+      var id = item._id;
+    }
+
     const prompt = this.alertCtrl.create({
       title: item ? 'Please Edit Item': 'Add item',
       message: item ? "Please edit item..." : 'Please enter item',
@@ -40,33 +49,30 @@ export class InputDialogServiceProvider {
         {
           text: 'Save',
           handler: item => {
-            console.log('Saved clicked', item);
-            if (index != undefined) {
-              this.dataService.editItem(item, index);
-            }
-            else {
+            if(index !== undefined){
+              console.log("Processing...");
+              this.dataService.editItem(item, id, index);
+            }else{
               this.dataService.addItem(item);
             }
-            this.dataService.editItem(item, index);
           }
         }
       ]
     });
     prompt.present();
   }
-*/
 
-  //constructor(public http: HttpClient) {
-  constructor(public alertCtrl: AlertController, public dataService: GroceriesServiceProvider, public modalCtrl : ModalController) {
-    console.log('Hello InputDialogServiceProvider Provider');
-  }
+/*
+
+
   public openModal(item?, index?){
     console.log('open');
     var data = { 
         modalTitle : item ? 'Edit Item' : 'Enter Item Details',
         modalMessage : item ?  "Please edit information..." : "Please enter information..", 
-        items : item ? item.items : null, 
+        name : item ? item.name : null, 
         quantity : item ? item.quantity : null,  
+        _id : item ? item._id : null,
       };
     this.modalPage = this.modalCtrl.create('ModalPage',data); 
     this.modalPage.onDidDismiss(returnedDataFromModal =>{
@@ -74,12 +80,12 @@ export class InputDialogServiceProvider {
         if(index != undefined){
           this.dataService.editItem(returnedDataFromModal,index);
         }else{
-          this.dataService.addItem(returnedDataFromModal);
+          this.dataService.addItem(item);
         }
       }
     });
     this.modalPage.present();
   }
 
-
+*/
 }
